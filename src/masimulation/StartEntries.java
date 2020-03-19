@@ -81,20 +81,20 @@ public class StartEntries extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        String rString = field[0].getText();
-        String pString = field[1].getText();
-        String lString = field[2].getText();
+        String roomString = field[0].getText();
+        String peopleString = field[1].getText();
+        String lengthString = field[2].getText();
 
         try {
-            int r = Integer.parseInt(rString);
-            int p = Integer.parseInt(pString);
-            int l = Integer.parseInt(lString);
-            if ((r < 2) || (p < 1) || (l < 1)) {
+            int room = Integer.parseInt(roomString);
+            int people = Integer.parseInt(peopleString);
+            int length = Integer.parseInt(lengthString);
+            if ((room < 2) || (people < 1) || (length < 1)) {
                 JOptionPane.showMessageDialog(null, "Invalid entries. Please enter valid values", "Invalid Entries", JOptionPane.ERROR_MESSAGE);
             } else {
                 javax.swing.SwingUtilities.invokeLater(new Runnable() { //if fields are valid, generate table model
                     public void run() {
-                        new TableContainer(r, p, l);
+                        new TableContainer(room, people, length);
                     }
                 });
                 frame.dispose();    //and dispose of current frame
