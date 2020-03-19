@@ -116,7 +116,7 @@ public class TableContainer extends JPanel implements ActionListener {
 
     //get values from table and perform simulation
     public void sim() {
-        //create variable table
+        //create table
         double[][] probMatrix = new double[r][r];
 
         //fill probability matrix with values from table
@@ -175,33 +175,20 @@ public class TableContainer extends JPanel implements ActionListener {
      * their new room location.
      */
     public int runSim(int n, double[][] matrix) {
-
         Random rand = new Random();
 
-        double probTest = rand.nextDouble();	//select's double between 0 and 1 
+        double target = rand.nextDouble();	//selects double between 0 and 1 
+        double current = 1;
 
-        double[] total = new double[r];	//array to spread out probabilities for the test
-
-        //separate out values of row from matrix and place into total array
-        total[0] = 1 - matrix[n][0];
-        for (int i = 1; i < total.length; i++) {
-            total[i] = total[i - 1] - matrix[n][i];
-        }
-
-        //Error check
-        if (total[total.length - 1] > 1e-10) {
-            System.err.println("ERROR in probablity tables for room " + n + ": expected 0 but found " + total[total.length - 1] + "\n");
-        }
-
-        total[total.length - 1] = 0; // set to exactly zero to avoid roundoff errors
-
-        // Calculate movements between room 
-        for (int i = 0; i < total.length; i++) {
-            if (probTest >= total[i]) {
+        //Calculate movements between rooms
+        for (int i = r - 1; i >= 0; i--) {
+            current -= matrix[n][i];
+            System.out.printf("Current: %.2f\n", current);
+            if (target >= current) {
+                System.out.printf("Result: arr[%d]: value: %.2f\n", i, matrix[n][i]);
                 return i;   //return new location
             }
         }
-        System.err.println("ERROR in computing movements for person " + n + "\n");
         return 0;
     }
 }

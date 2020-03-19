@@ -24,8 +24,8 @@ class CustomTableModel extends AbstractTableModel {
     private int r;
 
     public CustomTableModel(Object[][] d, String[] cNames, int r) {
-        this.data = d;
-        this.columnNames = cNames;
+        data = d;
+        columnNames = cNames;
         this.r = r;
     }
 

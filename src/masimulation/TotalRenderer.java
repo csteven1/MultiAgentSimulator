@@ -34,8 +34,7 @@ class TotalRenderer extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component editor = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         if (column > r) {
-            String str = String.valueOf(value);
-            if (Double.parseDouble(str) == 1) {
+            if (Double.valueOf(String.valueOf(value)) == 1) {
                 editor.setBackground(Color.green);
             } else {
                 editor.setBackground(Color.red);

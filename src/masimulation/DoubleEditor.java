@@ -35,8 +35,7 @@ public class DoubleEditor extends DefaultCellEditor {
 
         while (i == true) {
             try {
-                String editingValue = (String) getCellEditorValue();
-                double d = Double.parseDouble(editingValue);
+                double d = Double.parseDouble((String) getCellEditorValue());
                 if (d < 0 || d > 1) {
                     ErrorMessage();
                     return false;
